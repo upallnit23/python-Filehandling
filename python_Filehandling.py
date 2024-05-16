@@ -57,11 +57,11 @@ import re
 #2. Regex Powered Text Data Processing
 #Task 1: Email Extractor
 
-contacts = "/contacts.txt"
+#contacts = "/contacts.txt"
 
 def extract_emails():
     p = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}")
-    with open("python-Filehandling\contacts.txt", "r") as file:
+    with open("contacts.txt", "r") as file:
         f = file.read()
         emails = re.findall(p, f)
     print(emails)
@@ -80,7 +80,7 @@ def search_words():
 
     pword_count = 0
     nword_count = 0
-    with open("python-Filehandling/travel_blogs.txt", "r") as file:
+    with open("travel_blogs.txt", "r") as file:
         f = file.read()
         words = f.split(".,!?")
         print(words)
@@ -98,23 +98,22 @@ search_words()
 
 def analyze_blog_sentiments():
     #w = re.compile(r"[\d?,^°]{2,}")
-    x = re.compile(r"[,^Â]{2,}")
-    w = re.compile(r"[\d,^°]{2,}")
-    with open("python-Filehandling\weather_2020.txt", "r") as file:
+    x = re.compile(r"([^,0-9]?[0-9]?[^Â°]){2,}")
+    #w = re.compile(r"[,\d°]{2,}")
+    with open("weather_2020.txt", "r") as file:
         y = file.read()
         words1 = y.split()
-        temps = re.findall(w, y)
+        temps = re.findall(x, y)
         print(words1)
         print(temps)
-"""def pull_temps():
-    temps = []
-    with open("python-Filehandling\weather_2020.txt", "r") as file:
-        y = file.read()
-        print(y)
-    for match in re.finditer(r"(\d+)\s*^°", y):
-        temps.append(int(match.group(1)))
-    for temp in temps:
-        print(temps)"""
+    temps2 = 0
+    count = 0
+    for i in range(len(temps)):
+        temps2 += i
+        count += 1
+    print(temps2)
+    avtemp = temps2 // count
+    print(avtemp)
         
 analyze_blog_sentiments()
-#pull_temps()
+
